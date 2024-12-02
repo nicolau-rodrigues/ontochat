@@ -14,12 +14,14 @@ ontolgy_path = "ontology/dprod-anon-limited-v1.ttl"
 if __name__ == "__main__":
     print("Hello OntoChat!")
 
-    with open(ontolgy_path, 'r', encoding='utf-8') as file:
-        ontology = file.read()
+    # with open(ontolgy_path, 'r', encoding='utf-8') as file:
+    #     ontology = file.read()
 
-    llm = ChatOpenAI(temperature=0, model_name="gpt-4o-mini")
+    
+    #llm = ChatOpenAI(temperature=0, model_name="gpt-4o-mini")
     #llm = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo")
-
+    #llm = ChatOpenAI(temperature=0, model_name="gpt-4o")
+    
     graph = OntotextGraphDBGraph(
         query_endpoint="http://localhost:7200/repositories/mysandbox",
         local_file="ontology/dprod-anon-limited-v1.ttl",
@@ -36,5 +38,5 @@ if __name__ == "__main__":
     q7 = "List the data products that share at least one concept with the data product 'Customer Order Data Product'" #gerando query errada tanto no gpt 4 mini quanto no 3.5 turbo
     q8 = "What source data products are used by this data product 'Customer Order Data Product'" #gerando query errada tanto no gpt 4 mini quanto no 3.5 turbo
 
-    res = chain.invoke({chain.input_key: q8})[chain.output_key]
+    res = chain.invoke({chain.input_key: q7})[chain.output_key]
     print(res)
